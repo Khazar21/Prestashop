@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.asserts.SoftAssert;
 
 import javax.swing.*;
 import java.util.concurrent.TimeUnit;
@@ -17,35 +18,21 @@ import java.util.concurrent.TimeUnit;
 public class TestBase {
     protected WebDriver driver;
     protected Actions actions;
+    protected SoftAssert softAssert;
 
-    @BeforeClass
-    public void setUpBrowser() {
-        WebDriverManager.chromedriver().setup();
-    }
 
     @BeforeMethod
-    public void setUpDriver() throws InterruptedException {
-        driver = new ChromeDriver();
+    public void setUpDriver(){
+        driver = Driver.getDriver();
+        softAssert= new SoftAssert();
         actions= new Actions(driver);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @AfterMethod
     public void tearDown() {
-        // driver.quit();
-    }
-
-    public void login() {
-        driver.get("http://automationpractice.com");
-        driver.findElement(By.xpath("//a[@title='Log in to your customer account']")).click();
-        driver.findElement(By.id("email")).sendKeys("a111@gmail.com");
-        driver.findElement(By.id("passwd")).sendKeys("12345");
-        driver.findElement(By.id("SubmitLogin")).click();
-    }
-
-    public void search(String item) {
-        driver.findElement(By.id("search_query_top")).clear();
-        driver.findElement(By.id("search_query_top")).sendKeys(item + Keys.ENTER);
+        softAssert.assertAll();
+        Driver.closeDriver();
     }
     public void addToCart(){
         actions.moveToElement(driver.findElement(By.xpath("//a[@class='product_img_link']"))).perform();

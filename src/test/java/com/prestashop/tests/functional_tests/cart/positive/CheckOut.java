@@ -1,5 +1,7 @@
-package com.prestashop.tests.functional_tests.Positive;
+package com.prestashop.tests.functional_tests.cart.positive;
 
+import com.prestashop.pages.HomePage;
+import com.prestashop.pages.SignInPage;
 import com.prestashop.utilities.TestBase;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -8,6 +10,12 @@ import org.testng.annotations.Test;
 public class CheckOut extends TestBase {
     @Test
     public void checkOut() throws InterruptedException {
+        HomePage homePage= new HomePage();
+        SignInPage signInPage= new SignInPage();
+        homePage.openUrl();
+        homePage.signInButton.click();
+        signInPage.signIn("username","password");
+        signInPage.search("searchItem1");
         addToCart();
         driver.findElement(By.xpath("//a[@title='Proceed to checkout']")).click();
         driver.findElement(By.xpath("//a[@class='button btn btn-default standard-checkout button-medium']")).click();

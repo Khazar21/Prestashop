@@ -1,8 +1,6 @@
-package com.prestashop.tests.functional_tests.Positive;
+package com.prestashop.tests.functional_tests.login.positive;
 
-import com.github.javafaker.Faker;
 import com.prestashop.utilities.FakerBase;
-import com.prestashop.utilities.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
