@@ -10,8 +10,6 @@ import org.testng.annotations.Test;
 public class Registration extends TestBase {
     @Test
     public void registration1(){
-          HomePage homePage= new HomePage();
-          SignInPage signInPage= new SignInPage();
           homePage.openUrl();
           homePage.signInButton.click();
           //          //input invalid email type
@@ -21,8 +19,6 @@ public class Registration extends TestBase {
       }
     @Test
     public void registration2(){
-        HomePage homePage= new HomePage();
-        SignInPage signInPage= new SignInPage();
         homePage.openUrl();
         homePage.signInButton.click();
         //input valid email address but already registered one.

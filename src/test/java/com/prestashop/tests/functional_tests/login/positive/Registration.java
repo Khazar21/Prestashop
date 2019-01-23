@@ -13,9 +13,6 @@ import static com.prestashop.utilities.FakerBase.*;
 public class Registration extends TestBase {
     @Test
     public void registration1(){
-        HomePage homePage= new HomePage();
-        SignInPage signInPage= new SignInPage();
-        RegistrationPage registrationPage= new RegistrationPage();
         homePage.openUrl();
         homePage.signInButton.click();
         signInPage.signUpEmail.sendKeys(FakerBase.fakeEmailAddress);

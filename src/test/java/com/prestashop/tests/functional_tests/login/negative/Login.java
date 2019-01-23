@@ -11,8 +11,6 @@ public class Login extends TestBase {
 
     @Test
     public void negativeLogin1(){
-        HomePage homePage= new HomePage();
-        SignInPage signInPage= new SignInPage();
         homePage.openUrl();
         homePage.signInButton.click();
         signInPage.submit.click();
@@ -20,8 +18,6 @@ public class Login extends TestBase {
     }
     @Test
     public void negativeLogin2() throws InterruptedException {
-        HomePage homePage= new HomePage();
-        SignInPage signInPage= new SignInPage();
         homePage.openUrl();
         homePage.signInButton.click();
         signInPage.signIn("invalidUsername","invalidPassword");
