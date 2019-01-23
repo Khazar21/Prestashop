@@ -1,6 +1,7 @@
 package com.prestashop.tests.functional_tests.cart.positive;
 
 import com.prestashop.pages.HomePage;
+import com.prestashop.pages.ItemPage;
 import com.prestashop.pages.SearchPage;
 import com.prestashop.pages.SignInPage;
 import com.prestashop.utilities.ConfigurationReader;
@@ -12,22 +13,19 @@ import org.testng.annotations.Test;
 public class AddToCart extends TestBase {
     @Test
     public void addToCart(){
-        HomePage homePage= new HomePage();
-        SignInPage signInPage= new SignInPage();
-        SearchPage searchPage= new SearchPage();
         homePage.openUrl();
         homePage.signInButton.click();
         signInPage.signIn("username", "password");
         signInPage.search("searchItem1");
         actions.moveToElement(searchPage.itemNumber(1)).perform();
         searchPage.addToCart().click();
-        searchPage.controlClick.click();
-        Assert.assertEquals(searchPage.itemName.getText(), ConfigurationReader.getProperty("searchItem1"));
-        Assert.assertEquals(searchPage.itemQuantity.getText(),"1");
-        searchPage.continueShopping.click();
+        itemPage.controlClick.click();
+        Assert.assertEquals(itemPage.itemNameTempWindow.getText(), ConfigurationReader.getProperty("searchItem1"));
+        Assert.assertEquals(itemPage.itemQuantityTempWindow.getText(),"1");
+        itemPage.continueShopping.click();
         actions.moveToElement(searchPage.itemNumber(1)).perform();
         searchPage.addToCart().click();
-        searchPage.controlClick.click();
-        Assert.assertEquals(searchPage.itemQuantity.getText(),"2");
+        itemPage.controlClick.click();
+        Assert.assertEquals(itemPage.itemQuantityTempWindow.getText(),"2");
     }
 }

@@ -12,14 +12,11 @@ import org.testng.annotations.Test;
 public class Search extends TestBase {
     @Test
     public void search(){
-        HomePage homePage= new HomePage();
-        SignInPage signInPage= new SignInPage();
         homePage.openUrl();
         homePage.signInButton.click();
         signInPage.signIn("username","password");
         signInPage.search("searchItem1");
-        Assert.assertEquals(driver.findElement(By.xpath("//span[contains(text(),'blouse')]")).
+        Assert.assertEquals(searchPage.searchResultDisplayed.
                 getText().toLowerCase().replace("\"",""),ConfigurationReader.getProperty("searchItem1").toLowerCase());
-
     }
 }

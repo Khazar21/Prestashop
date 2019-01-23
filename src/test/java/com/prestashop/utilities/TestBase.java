@@ -1,5 +1,6 @@
 package com.prestashop.utilities;
 
+import com.prestashop.pages.*;
 import com.sun.java.swing.action.AboutAction;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -20,6 +21,15 @@ public class TestBase {
     protected Actions actions;
     protected SoftAssert softAssert;
 
+    protected HomePage homePage;
+    protected IdentityPage identityPage;
+    protected ItemPage itemPage;
+    protected MyAccountPage myAccountPage;
+    protected OrderPage orderPage;
+    protected RegistrationPage registrationPage;
+    protected SearchPage searchPage;
+    protected SignInPage signInPage;
+
 
     @BeforeMethod
     public void setUpDriver(){
@@ -27,15 +37,23 @@ public class TestBase {
         softAssert= new SoftAssert();
         actions= new Actions(driver);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        initializePageObjects();
     }
 
     @AfterMethod
     public void tearDown() {
         softAssert.assertAll();
-        //Driver.closeDriver();
+        Driver.closeDriver();
     }
-    public void addToCart(){
-        actions.moveToElement(driver.findElement(By.xpath("//a[@class='product_img_link']"))).perform();
-        driver.findElement(By.xpath("//a[@title='Add to cart']")).click();
+    public void initializePageObjects(){
+        homePage= new HomePage();
+        identityPage= new IdentityPage();
+        itemPage= new ItemPage();
+        myAccountPage= new MyAccountPage();
+        orderPage= new OrderPage();
+        registrationPage= new RegistrationPage();
+        searchPage= new SearchPage();
+        signInPage= new SignInPage();
     }
+
 }
