@@ -1,7 +1,9 @@
 package com.prestashop.tests.functional_tests.cart.positive;
 
 import com.prestashop.pages.HomePage;
+import com.prestashop.pages.SearchPage;
 import com.prestashop.pages.SignInPage;
+import com.prestashop.utilities.ConfigurationReader;
 import com.prestashop.utilities.TestBase;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -12,19 +14,20 @@ public class AddToCart extends TestBase {
     public void addToCart(){
         HomePage homePage= new HomePage();
         SignInPage signInPage= new SignInPage();
+        SearchPage searchPage= new SearchPage();
         homePage.openUrl();
         homePage.signInButton.click();
         signInPage.signIn("username", "password");
         signInPage.search("searchItem1");
-        actions.moveToElement(driver.findElement(By.xpath("//a[@class='product_img_link']"))).perform();
-        driver.findElement(By.xpath("//a[@title='Add to cart']")).click();
-        driver.findElement(By.id("layer_cart_product_title")).click();
-        Assert.assertEquals(driver.findElement(By.id("layer_cart_product_title")).getText(),"Blouse");
-        Assert.assertEquals(driver.findElement(By.id("layer_cart_product_quantity")).getText(),"1");
-        driver.findElement(By.xpath("//i[@class='icon-chevron-left left']/..")).click();
-        actions.moveToElement(driver.findElement(By.xpath("//a[@class='product_img_link']"))).perform();
-        driver.findElement(By.xpath("//a[@title='Add to cart']")).click();
-        driver.findElement(By.id("layer_cart_product_title")).click();
-        Assert.assertEquals(driver.findElement(By.id("layer_cart_product_quantity")).getText(),"2");
+        actions.moveToElement(searchPage.itemNumber(1)).perform();
+        searchPage.addToCart().click();
+        searchPage.controlClick.click();
+        Assert.assertEquals(searchPage.itemName.getText(), ConfigurationReader.getProperty("searchItem1"));
+        Assert.assertEquals(searchPage.itemQuantity.getText(),"1");
+        searchPage.continueShopping.click();
+        actions.moveToElement(searchPage.itemNumber(1)).perform();
+        searchPage.addToCart().click();
+        searchPage.controlClick.click();
+        Assert.assertEquals(searchPage.itemQuantity.getText(),"2");
     }
 }

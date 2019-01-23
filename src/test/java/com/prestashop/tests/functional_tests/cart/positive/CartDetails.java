@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 public class CartDetails extends TestBase {
     @Test
-    public void cartTest() throws InterruptedException {
+    public void cartTest(){
         HomePage homePage= new HomePage();
         SignInPage signInPage= new SignInPage();
         homePage.openUrl();

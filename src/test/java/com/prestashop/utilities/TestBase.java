@@ -32,7 +32,7 @@ public class TestBase {
     @AfterMethod
     public void tearDown() {
         softAssert.assertAll();
-        Driver.closeDriver();
+        //Driver.closeDriver();
     }
     public void addToCart(){
         actions.moveToElement(driver.findElement(By.xpath("//a[@class='product_img_link']"))).perform();
