@@ -18,10 +18,10 @@ public class CartCheckoutDeleteTest extends TestBase {
         actions.moveToElement(searchPage.itemNumber(4)).perform();
         searchPage.addToCart().click();
         itemPage.proceedToCheckout.click();
-        Assert.assertEquals(orderPage.cartItemCountInformation.getText(),"Your shopping cart contains: "+OrderPage.count+" Products");
+        Assert.assertEquals(orderPage.cartItemCountInformation.getText(),"Your shopping cart contains: 2 Products");
         orderPage.iconTrash(1).click();
         Thread.sleep(1000);
-        Assert.assertEquals(orderPage.cartItemCountInformation.getText(),"Your shopping cart contains: "+OrderPage.count+" Product");
+        Assert.assertEquals(orderPage.cartItemCountInformation.getText(),"Your shopping cart contains: 1 Product");
         Thread.sleep(1000);
         orderPage.iconTrash(1).click();
         Thread.sleep(1000);
