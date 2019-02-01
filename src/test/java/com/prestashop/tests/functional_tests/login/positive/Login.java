@@ -9,9 +9,8 @@ import org.testng.annotations.Test;
 public class Login extends TestBase {
      @Test
     public void loginPositive(){
-         homePage.openUrl();
-         homePage.signInButton.click();
-         signInPage.signIn("username","password");
+         pages.homePage.signInButton.click();
+         pages.signInPage.signIn("username","password");
        Assert.assertTrue(driver.getTitle().contains("My account"));
     }
 }

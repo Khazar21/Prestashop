@@ -11,15 +11,14 @@ import org.testng.annotations.Test;
 public class CartLoginTest extends TestBase {
     @Test
     public void cartLoginTest(){
-        homePage.openUrl();
-        actions.moveToElement(searchPage.itemNumber(3)).perform();
-        searchPage.addToCart().click();
-        itemPage.continueShopping.click();
-        actions.moveToElement(itemPage.viewCart).perform();
-        String cartItemName= itemPage.cartItem.getAttribute("alt");
-        homePage.signInButton.click();
-        signInPage.signIn("username","password");
-        actions.moveToElement(itemPage.viewCart).perform();
-        Assert.assertEquals(itemPage.cartItem.getAttribute("alt"),cartItemName);
+        actions.moveToElement(pages.searchPage.itemNumber(3)).perform();
+        pages.searchPage.addToCart().click();
+        pages.itemPage.continueShopping.click();
+        actions.moveToElement(pages.itemPage.viewCart).perform();
+        String cartItemName= pages.itemPage.cartItem.getAttribute("alt");
+        pages.homePage.signInButton.click();
+        pages.signInPage.signIn("username","password");
+        actions.moveToElement(pages.itemPage.viewCart).perform();
+        Assert.assertEquals(pages.itemPage.cartItem.getAttribute("alt"),cartItemName);
     }
 }

@@ -14,23 +14,22 @@ import org.testng.annotations.Test;
 public class CheckOut extends TestBase {
     @Test
     public void checkOut() throws InterruptedException {
-        homePage.openUrl();
-        homePage.signInButton.click();
-        signInPage.signIn("username","password");
-        signInPage.search("searchItem1");
-        actions.moveToElement(searchPage.itemNumber(1)).perform();
-        searchPage.addToCart().click();
-        itemPage.proceedToCheckout.click();
-        searchPage.proceedToCheckoutInSummary.click();
-        searchPage.proceedToCheckoutInAddress.click();
-        searchPage.proceedToCheckoutInShipping.click();
-        Assert.assertTrue(searchPage.error_YouMustAgree.getText().contains("You must agree"));
-        searchPage.closeErrorMessage.click();
+        pages.homePage.signInButton.click();
+        pages.signInPage.signIn("username","password");
+        pages.signInPage.search("searchItem1");
+        actions.moveToElement(pages.searchPage.itemNumber(1)).perform();
+        pages.searchPage.addToCart().click();
+        pages.itemPage.proceedToCheckout.click();
+        pages.searchPage.proceedToCheckoutInSummary.click();
+        pages.searchPage.proceedToCheckoutInAddress.click();
+        pages.searchPage.proceedToCheckoutInShipping.click();
+        Assert.assertTrue(pages.searchPage.error_YouMustAgree.getText().contains("You must agree"));
+        pages.searchPage.closeErrorMessage.click();
         Thread.sleep(1000);
-        searchPage.checkBox_IAgree.click();
-        searchPage.proceedToCheckoutInShipping.click();
-        searchPage.payByCheck.click();
-        searchPage.confirmOrder.click();
-        Assert.assertTrue(searchPage.orderPlacedSuccessMessage.getText().contains("is complete"));
+        pages.searchPage.checkBox_IAgree.click();
+        pages.searchPage.proceedToCheckoutInShipping.click();
+        pages.searchPage.payByCheck.click();
+        pages.searchPage.confirmOrder.click();
+        Assert.assertTrue(pages.searchPage.orderPlacedSuccessMessage.getText().contains("is complete"));
     }
 }

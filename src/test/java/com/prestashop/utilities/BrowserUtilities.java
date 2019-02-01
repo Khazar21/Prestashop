@@ -1,6 +1,9 @@
 package com.prestashop.utilities;
 
 import com.github.javafaker.Faker;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BrowserUtilities {
     public static String fakerBase(String fake){
@@ -27,6 +30,10 @@ public class BrowserUtilities {
                     default:
                         return null;
                 }
+    }
+    public static void waitForClickablility(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 15);
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
 }

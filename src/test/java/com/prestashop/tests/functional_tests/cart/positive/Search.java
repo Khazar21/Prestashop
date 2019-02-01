@@ -12,11 +12,10 @@ import org.testng.annotations.Test;
 public class Search extends TestBase {
     @Test
     public void search(){
-        homePage.openUrl();
-        homePage.signInButton.click();
-        signInPage.signIn("username","password");
-        signInPage.search("searchItem1");
-        Assert.assertEquals(searchPage.searchResultDisplayed.
+        pages.homePage.signInButton.click();
+        pages.signInPage.signIn("username","password");
+        pages.signInPage.search("searchItem1");
+        Assert.assertEquals(pages.searchPage.searchResultDisplayed.
                 getText().toLowerCase().replace("\"",""),ConfigurationReader.getProperty("searchItem1").toLowerCase());
     }
 }

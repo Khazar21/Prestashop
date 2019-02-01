@@ -17,18 +17,13 @@ import java.util.List;
 public class Product extends TestBase {
     @Test
     public void verifyPriceAndName(){
-        HomePage homePage= new HomePage();
-        SignInPage signInPage= new SignInPage();
-        SearchPage searchPage= new SearchPage();
-        ItemPage itemPage= new ItemPage();
-        homePage.openUrl();
-        actions.moveToElement(searchPage.itemNumber(2)).perform();
-        String priceHomePageItem= searchPage.productHomePrice().getText();
-        String nameHomePageItem= searchPage.productName().getText();
-        searchPage.moreButton().click();
-        Assert.assertEquals(itemPage.itemName.getText(),nameHomePageItem);
-        Assert.assertEquals(itemPage.itemPrice.getText(),priceHomePageItem);
-        Select dropBoxSize= new Select(itemPage.size);
+        actions.moveToElement(pages.searchPage.itemNumber(2)).perform();
+        String priceHomePageItem= pages.searchPage.productHomePrice().getText();
+        String nameHomePageItem= pages.searchPage.productName().getText();
+        pages.searchPage.moreButton().click();
+        Assert.assertEquals(pages.itemPage.itemName.getText(),nameHomePageItem);
+        Assert.assertEquals(pages.itemPage.itemPrice.getText(),priceHomePageItem);
+        Select dropBoxSize= new Select(pages.itemPage.size);
         String defaultSize= dropBoxSize.getFirstSelectedOption().getText();
         List<WebElement> sizeDropBoxList= dropBoxSize.getOptions();
         List<String> actualDropBoxList= new ArrayList<String>();
@@ -39,14 +34,14 @@ public class Product extends TestBase {
          expectedSizeDropBoxList.add("S");
          expectedSizeDropBoxList.add("M");
          expectedSizeDropBoxList.add("L");
-         Assert.assertEquals(itemPage.quantity.getAttribute("value"), "1");
+         Assert.assertEquals(pages.itemPage.quantity.getAttribute("value"), "1");
          Assert.assertEquals(defaultSize, "S");
          Assert.assertEquals(actualDropBoxList,expectedSizeDropBoxList);
-         itemPage.addToCardInItemPage.click();
-         itemPage.controlClick.click();
-         Assert.assertEquals(itemPage.itemQuantityTempWindow.getText(),"1");
-         Assert.assertEquals(itemPage.successMessage.getText(), "Product successfully added to your shopping cart");
-         Assert.assertTrue(itemPage.itemSizeInTempWindow.getText().contains(" S"));
-         Assert.assertEquals(itemPage.itemName.getText(),nameHomePageItem);
+        pages.itemPage.addToCardInItemPage.click();
+        pages.itemPage.controlClick.click();
+         Assert.assertEquals(pages.itemPage.itemQuantityTempWindow.getText(),"1");
+         Assert.assertEquals(pages.itemPage.successMessage.getText(), "Product successfully added to your shopping cart");
+         Assert.assertTrue(pages.itemPage.itemSizeInTempWindow.getText().contains(" S"));
+         Assert.assertEquals(pages.itemPage.itemName.getText(),nameHomePageItem);
     }
 }

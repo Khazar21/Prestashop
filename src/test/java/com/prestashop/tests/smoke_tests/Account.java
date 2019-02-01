@@ -13,36 +13,31 @@ import org.testng.annotations.Test;
 public class Account extends TestBase {
     @Test
     public  void smokeTestAccount(){
-        HomePage homePage= new HomePage();
-        MyAccountPage myAccountPage= new MyAccountPage();
-        SignInPage signInPage= new SignInPage();
-        IdentityPage identityPage= new IdentityPage();
-        homePage.openUrl();
-        homePage.signInButton.click();
-        signInPage.signIn("username", "password");
+        pages.homePage.signInButton.click();
+        pages.signInPage.signIn("username", "password");
         Assert.assertTrue(driver.getTitle().contains("My account"));
-        Assert.assertTrue(myAccountPage.signedInUser.isDisplayed());
-        myAccountPage.information.click();
+        Assert.assertTrue(pages.myAccountPage.signedInUser.isDisplayed());
+        pages.myAccountPage.information.click();
 
         Assert.assertTrue(driver.getTitle().contains("Identity"));
-        Assert.assertEquals(identityPage.firstName.getAttribute("value")+" "+identityPage.lastName.getAttribute("value"),
-                                      myAccountPage.signedInUser.getText());
-        identityPage.save.click();
+        Assert.assertEquals(pages.identityPage.firstName.getAttribute("value")+" "+pages.identityPage.lastName.getAttribute("value"),
+                pages.myAccountPage.signedInUser.getText());
+        pages.identityPage.save.click();
 
-        Assert.assertTrue(identityPage.errorMessage.isDisplayed());
+        Assert.assertTrue(pages.identityPage.errorMessage.isDisplayed());
 
-        identityPage.backToAccount.click();
+        pages.identityPage.backToAccount.click();
 
         Assert.assertTrue(driver.getTitle().contains("My account"));
 
-        myAccountPage.myAddresses.click();
+        pages.myAccountPage.myAddresses.click();
 
         driver.findElement(By.xpath("//span[.='Add a new address']/..")).click();
-        Assert.assertEquals(identityPage.firstName.getAttribute("value")+" "+identityPage.lastName.getAttribute("value"),
-                myAccountPage.signedInUser.getText());
-        identityPage.firstName.clear();
+        Assert.assertEquals(pages.identityPage.firstName.getAttribute("value")+" "+pages.identityPage.lastName.getAttribute("value"),
+                pages.myAccountPage.signedInUser.getText());
+        pages.identityPage.firstName.clear();
         driver.findElement(By.id("submitAddress")).click();
-    Assert.assertTrue(identityPage.errorMessage.isDisplayed());
+    Assert.assertTrue(pages.identityPage.errorMessage.isDisplayed());
 
     }
 }

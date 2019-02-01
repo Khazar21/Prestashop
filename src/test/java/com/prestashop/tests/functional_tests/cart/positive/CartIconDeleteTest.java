@@ -14,14 +14,13 @@ import org.testng.annotations.Test;
 public class CartIconDeleteTest extends TestBase {
     @Test
     public void cartIconDeleteTest(){
-        homePage.openUrl();
-        actions.moveToElement(searchPage.itemNumber(3)).perform();
-        searchPage.addToCart().click();
-        itemPage.continueShopping.click();
-        actions.moveToElement(itemPage.viewCart).perform();
-        itemPage.cartIconDeleteButton().click();
+        actions.moveToElement(pages.searchPage.itemNumber(3)).perform();
+        pages.searchPage.addToCart().click();
+        pages.itemPage.continueShopping.click();
+        actions.moveToElement(pages.itemPage.viewCart).perform();
+        pages.itemPage.cartIconDeleteButton().click();
         WebDriverWait wait= new WebDriverWait(driver,5);
-        wait.until(ExpectedConditions.textToBePresentInElement(itemPage.cartIconProductCount,"(empty)"));
-        Assert.assertEquals(itemPage.cartIconProductCount.getText(),"(empty)");
+        wait.until(ExpectedConditions.textToBePresentInElement(pages.itemPage.cartIconProductCount,"(empty)"));
+        Assert.assertEquals(pages.itemPage.cartIconProductCount.getText(),"(empty)");
     }
 }

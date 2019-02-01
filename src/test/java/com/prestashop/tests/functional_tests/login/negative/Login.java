@@ -11,16 +11,14 @@ public class Login extends TestBase {
 
     @Test
     public void negativeLogin1(){
-        homePage.openUrl();
-        homePage.signInButton.click();
-        signInPage.submit.click();
+        pages.homePage.signInButton.click();
+        pages.signInPage.submit.click();
         Assert.assertTrue(driver.findElement(By.xpath("//li[.='An email address required.']")).isDisplayed());
     }
     @Test
     public void negativeLogin2() throws InterruptedException {
-        homePage.openUrl();
-        homePage.signInButton.click();
-        signInPage.signIn("invalidUsername","invalidPassword");
+        pages.homePage.signInButton.click();
+        pages.signInPage.signIn("invalidUsername","invalidPassword");
         Assert.assertTrue(driver.findElement(By.xpath("//ol/li")).isDisplayed());
     }
 }

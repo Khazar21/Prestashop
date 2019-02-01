@@ -20,10 +20,6 @@ public class HomePage {
     public WebElement searchBox;
 
 
-
-    public void openUrl(){
-        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
-    }
     public void search(String item) {
         String itemreturn= ConfigurationReader.getProperty(""+item);
         searchBox.clear();

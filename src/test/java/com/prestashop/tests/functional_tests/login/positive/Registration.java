@@ -12,11 +12,10 @@ import org.testng.annotations.Test;
 public class Registration extends TestBase {
     @Test
     public void registration1(){
-        homePage.openUrl();
-        homePage.signInButton.click();
-        signInPage.signUpEmail.sendKeys(RegistrationPage.emailToVerify=BrowserUtilities.fakerBase("fakeEmailAddress"));
-        signInPage.createAccountButton.click();
-        registrationPage.register();
+        pages.homePage.signInButton.click();
+        pages.signInPage.signUpEmail.sendKeys(RegistrationPage.emailToVerify=BrowserUtilities.fakerBase("fakeEmailAddress"));
+        pages.signInPage.createAccountButton.click();
+        pages.registrationPage.register();
         Assert.assertTrue(driver.getTitle().contains("My account"));
         Assert.assertEquals(driver.findElement(By.xpath("//a[@title='View my customer account']//span")).getText(),
                             RegistrationPage.firstNameToVerify+" "+RegistrationPage.lastNameToVerify);

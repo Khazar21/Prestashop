@@ -20,15 +20,8 @@ public class TestBase {
     protected WebDriver driver;
     protected Actions actions;
     protected SoftAssert softAssert;
+    protected Pages pages;
 
-    protected HomePage homePage;
-    protected IdentityPage identityPage;
-    protected ItemPage itemPage;
-    protected MyAccountPage myAccountPage;
-    protected OrderPage orderPage;
-    protected RegistrationPage registrationPage;
-    protected SearchPage searchPage;
-    protected SignInPage signInPage;
 
 
     @BeforeMethod
@@ -37,23 +30,14 @@ public class TestBase {
         softAssert= new SoftAssert();
         actions= new Actions(driver);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        initializePageObjects();
+        pages= new Pages();
+        driver.get(ConfigurationReader.getProperty("url"));
     }
 
     @AfterMethod
     public void tearDown() {
         softAssert.assertAll();
         Driver.closeDriver();
-    }
-    public void initializePageObjects(){
-        homePage= new HomePage();
-        identityPage= new IdentityPage();
-        itemPage= new ItemPage();
-        myAccountPage= new MyAccountPage();
-        orderPage= new OrderPage();
-        registrationPage= new RegistrationPage();
-        searchPage= new SearchPage();
-        signInPage= new SignInPage();
     }
 
 }

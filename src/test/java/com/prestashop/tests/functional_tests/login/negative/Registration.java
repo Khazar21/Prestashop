@@ -10,20 +10,18 @@ import org.testng.annotations.Test;
 public class Registration extends TestBase {
     @Test
     public void registration1(){
-          homePage.openUrl();
-          homePage.signInButton.click();
+        pages.homePage.signInButton.click();
           //          //input invalid email type
-          signInPage.signUpEmail.sendKeys("asdf");
-          signInPage.createAccountButton.click();
+        pages.signInPage.signUpEmail.sendKeys("asdf");
+        pages.signInPage.createAccountButton.click();
           Assert.assertTrue(driver.findElement(By.xpath("//li[.='Invalid email address.']")).isDisplayed());
       }
     @Test
     public void registration2(){
-        homePage.openUrl();
-        homePage.signInButton.click();
+        pages.homePage.signInButton.click();
         //input valid email address but already registered one.
-        signInPage.signUpEmail.sendKeys("a111@gmail.com");
-        signInPage.createAccountButton.click();
+        pages.signInPage.signUpEmail.sendKeys("a111@gmail.com");
+        pages.signInPage.createAccountButton.click();
         Assert.assertTrue(driver.findElement(By.xpath("//li[contains(text(),'has already been registered')]")).isDisplayed());
     }
 }
