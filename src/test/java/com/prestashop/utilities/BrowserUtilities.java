@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 
 public class BrowserUtilities {
     public static String fakerBase(String fake){
-                final Faker faker= new Faker();
+                 Faker faker= new Faker();
                 switch(fake) {
                     case "fakeEmailAddress" :
                         return faker.internet().emailAddress();
