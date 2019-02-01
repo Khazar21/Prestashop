@@ -12,10 +12,17 @@ import org.testng.annotations.Test;
 public class Search extends TestBase {
     @Test(groups = "regression")
     public void search(){
+        extentLogger= report.createTest("Search Test");
+
+        extentLogger.info("clicking on sign in");
         pages.homePage.signInButton.click();
+        extentLogger.info("signing in with valid credentials");
         pages.signInPage.signIn("username","password");
+        extentLogger.info("serching item");
         pages.signInPage.search("searchItem1");
+        extentLogger.info("verifying the search item name displayed correctly");
         Assert.assertEquals(pages.searchPage.searchResultDisplayed.
                 getText().toLowerCase().replace("\"",""),ConfigurationReader.getProperty("searchItem1").toLowerCase());
+        extentLogger.info("PASSED- Search Test");
     }
 }
