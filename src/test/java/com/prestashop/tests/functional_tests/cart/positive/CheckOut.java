@@ -12,7 +12,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CheckOut extends TestBase {
-    @Test
+    @Test(groups = "regression")
     public void checkOut() throws InterruptedException {
         pages.homePage.signInButton.click();
         pages.signInPage.signIn("username","password");

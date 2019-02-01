@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Prestashop Smoke Testing">
+    <test name="Prestasjop Smoke testing">
+        <parameter name="browser" value="chrome"/>
+        <packages>
+            <package name="com.prestashop.tests.smoke_tests"></package>
+        </packages>
+    </test>
+    <test name="Smoke testing using chrome">
+        <parameter name="browser" value="firefox"/>
+        <packages>
+            <package name="com.prestashop.tests.smoke_tests"></package>
+        </packages>
+    </test>
+</suite>

@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Prestashop Web Application">
+    <test name="Regression Group">
+        <groups>
+            <run>
+                <include name="regression"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.prestashop.tests.functional_tests.cart.positive"/>
+        </packages>
+    </test>
+</suite>

@@ -8,7 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Registration extends TestBase {
-    @Test
+    @Test(groups = "regression")
     public void registration1(){
         pages.homePage.signInButton.click();
           //          //input invalid email type
@@ -16,7 +16,7 @@ public class Registration extends TestBase {
         pages.signInPage.createAccountButton.click();
           Assert.assertTrue(driver.findElement(By.xpath("//li[.='Invalid email address.']")).isDisplayed());
       }
-    @Test
+    @Test(groups = "regression")
     public void registration2(){
         pages.homePage.signInButton.click();
         //input valid email address but already registered one.

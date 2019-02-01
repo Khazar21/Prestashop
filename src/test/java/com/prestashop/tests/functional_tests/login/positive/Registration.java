@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 
 public class Registration extends TestBase {
-    @Test
+    @Test(groups = "regression")
     public void registration1(){
         pages.homePage.signInButton.click();
         pages.signInPage.signUpEmail.sendKeys(RegistrationPage.emailToVerify=BrowserUtilities.fakerBase("fakeEmailAddress"));

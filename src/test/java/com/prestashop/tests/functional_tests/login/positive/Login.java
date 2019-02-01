@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Login extends TestBase {
-     @Test
+     @Test(groups = "regression")
     public void loginPositive(){
          pages.homePage.signInButton.click();
          pages.signInPage.signIn("username","password");

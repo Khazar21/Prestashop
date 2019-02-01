@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Prestashop Web Application">
+    <test name="Positive Login test using chrome">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="com.prestashop.tests.functional_tests.login.positive.Login"/>
+        </classes>
+    </test>
+    <test name="Positive Login test using firefox">
+        <parameter name="browser" value="firefox"></parameter>
+        <classes>
+            <class name="com.prestashop.tests.functional_tests.login.positive.Login"/>
+        </classes>
+    </test>
+</suite>

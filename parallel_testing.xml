@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Prestashop Web Application" verbose="2"
+       parallel="tests" thread-count="2">
+
+    <test name="Login tests positive">
+      <classes>
+          <class name="com.prestashop.tests.functional_tests.login.positive.Login"/>
+      </classes>
+    </test>
+
+    <test name="Registration positive">
+    <classes>
+        <class name="com.prestashop.tests.functional_tests.login.positive.Registration"/>
+    </classes>
+    </test>
+
+</suite>

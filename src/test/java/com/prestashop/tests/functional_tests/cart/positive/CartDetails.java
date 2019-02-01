@@ -11,7 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CartDetails extends TestBase {
-    @Test
+    @Test(groups = "regression")
     public void cartTest(){
         pages.homePage.signInButton.click();
         driver.manage().window().maximize();

@@ -12,7 +12,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CartIconDeleteTest extends TestBase {
-    @Test
+    @Test(groups = "regression")
     public void cartIconDeleteTest(){
         actions.moveToElement(pages.searchPage.itemNumber(3)).perform();
         pages.searchPage.addToCart().click();

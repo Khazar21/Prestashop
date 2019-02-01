@@ -25,6 +25,10 @@ public class MyAccountPage {
     public WebElement signedInUser;
     @FindBy(xpath = "//a[@title='Log me out']")
     public WebElement signOut;
+    @FindBy(xpath = "//span[.='Add a new address']/..")
+    public WebElement addANewAddress;
+    @FindBy(id = "submitAddress")
+    public WebElement saveNewAddress;
 
 
 

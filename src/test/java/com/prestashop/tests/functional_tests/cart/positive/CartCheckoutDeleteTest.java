@@ -13,14 +13,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class CartCheckoutDeleteTest extends TestBase {
-    @Test
+    @Test(groups = "regression")
     public void cartCheckoutDeleteTest() throws InterruptedException {
         actions.moveToElement(pages.searchPage.itemNumber(2)).perform();
         pages.searchPage.addToCart().click();
         pages.itemPage.continueShopping.click();
         actions.moveToElement(pages.searchPage.itemNumber(4)).perform();
         pages.searchPage.addToCart().click();
-        BrowserUtilities.waitForClickablility(pages.itemPage.proceedToCheckout);
+        BrowserUtilities.waitForClickability(pages.itemPage.proceedToCheckout);
         pages.itemPage.proceedToCheckout.click();
         Assert.assertEquals(pages.orderPage.cartItemCountInformation.getText(),"Your shopping cart contains: 2 Products");
         pages.orderPage.iconTrash(1).click();
