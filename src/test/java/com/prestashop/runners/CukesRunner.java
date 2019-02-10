@@ -7,10 +7,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/resources/features/homepage_search.feature",
-        glue = "com/prestashop/step_definitions"
+        features = "src/test/resources/features",
+        glue = "com/prestashop/step_definitions",
+        dryRun = false,
+        tags = "@signIn"
 )
-
-
 public class CukesRunner {
 }

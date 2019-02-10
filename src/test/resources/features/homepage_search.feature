@@ -1,5 +1,6 @@
 Feature: Home page
-  As a user when I enter search term and click enter, system should display search page
+  As a user when I enter search term and click enter,
+  system should display search page
 
   Scenario: Home page search functionality
 
@@ -7,4 +8,6 @@ Feature: Home page
 
     When user inputs search term and clicks enter
 
-    Then system should display search page
+    Then System should display page title contains- "Search"
+
+
