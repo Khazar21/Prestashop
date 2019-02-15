@@ -24,7 +24,7 @@ public class Registration extends TestBase {
         pages.registrationPage.register();
         extentLogger.info("verifying the title of opened page");
         Assert.assertTrue(driver.getTitle().contains("My account"));
-        Assert.assertEquals(driver.findElement(By.xpath("//a[@title='View my customer account']//span")).getText(),
+        Assert.assertEquals(pages.registrationPage.firstAndLastNameAfterReg.getText(),
                             RegistrationPage.firstNameToVerify+" "+RegistrationPage.lastNameToVerify);
         System.out.println("Sign in credentials:\n"+ RegistrationPage.firstNameToVerify+
                 "\n"+RegistrationPage.lastNameToVerify+ "\n"+RegistrationPage.emailToVerify+

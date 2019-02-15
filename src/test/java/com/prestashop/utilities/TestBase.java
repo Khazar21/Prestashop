@@ -3,20 +3,15 @@ package com.prestashop.utilities;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.prestashop.pages.*;
-import com.sun.java.swing.action.AboutAction;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
-import javax.swing.*;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
@@ -27,6 +22,9 @@ public class TestBase {
     protected static ExtentReports report;
     private static ExtentHtmlReporter htmlReporter;
     protected static ExtentTest extentLogger;
+    protected List<Map<String,String>> testDataSignUp;
+    protected List<Map<String,String>> testDataSignIn;
+    protected ExcelUtil excelUtilOut;
 
     @BeforeTest(alwaysRun = true)
     public void setUpTest(){
@@ -55,6 +53,10 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         pages= new Pages();
         driver.get(ConfigurationReader.getProperty("url"));
+        ExcelUtil excelUtilIn= new ExcelUtil("./src/test/resources/sign_up_data.xlsx", 0);
+        excelUtilOut= new ExcelUtil("./src/test/resources/sign_in_data.xlsx", 0);
+        testDataSignUp = excelUtilIn.getDataList();
+        testDataSignIn=excelUtilOut.getDataList();
     }
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) throws IOException {
@@ -69,7 +71,7 @@ public class TestBase {
         } else if (result.getStatus() == ITestResult.SKIP) {
             extentLogger.skip("Test Case Skipped: " + result.getName());
         }
-        Driver.closeDriver();
+       // Driver.closeDriver();
         softAssert.assertAll();
     }
     @AfterTest(alwaysRun = true)

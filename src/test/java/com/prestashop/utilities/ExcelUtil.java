@@ -4,10 +4,8 @@ import org.apache.poi.ss.usermodel.*;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 
 /*
  * This is a utility for reading from writing to excel files.
@@ -15,9 +13,12 @@ import java.util.Map;
  */
 public class ExcelUtil {
 
+  //  workbook>worksheet>row>cell
+
     private Sheet workSheet;
     private Workbook workBook;
     private String path;
+
 
     public ExcelUtil(String path, String sheetName) {
         this.path = path;
@@ -32,6 +33,19 @@ public class ExcelUtil {
             throw new RuntimeException(e);
         }
     }
+    public ExcelUtil(String path, int sheetIndex) {
+        this.path = path;
+        try {
+            // Open the Excel file
+            FileInputStream ExcelFile = new FileInputStream(path);
+            // Access the required test data sheet
+            workBook = WorkbookFactory.create(ExcelFile);
+            workSheet = workBook.getSheetAt(sheetIndex);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public String getCellData(int rowNum, int colNum) {
         Cell cell;
@@ -41,6 +55,7 @@ public class ExcelUtil {
             return cellData;
         } catch (Exception e) {
             throw new RuntimeException(e);
+
         }
     }
 
@@ -64,7 +79,7 @@ public class ExcelUtil {
         // this will be returned
         List<Map<String, String>> data = new ArrayList<>();
 
-        for (int i = 1; i < rowCount(); i++) {
+        for (int i = 1; i <= rowCount(); i++) {
             // get each row
             Row row = workSheet.getRow(i);
             // create map of the row using the column and value
@@ -91,12 +106,19 @@ public class ExcelUtil {
     }
 
     public void setCellData(String value, int rowNum, int colNum) {
-        Cell cell;
-        Row row;
 
         try {
+            Row row;
+            Cell cell;
+
             row = workSheet.getRow(rowNum);
-            cell = row.getCell(colNum);
+
+            if(row!=null) {
+                cell = row.getCell(colNum);
+            }else {
+                row = workSheet.createRow(rowNum);
+                cell= row.getCell(colNum);
+            }
 
             if (cell == null) {
                 cell = row.createCell(colNum);
@@ -109,7 +131,7 @@ public class ExcelUtil {
 
             fileOut.close();
         } catch (Exception e) {
-            e.printStackTrace();
+           throw new RuntimeException(e);
         }
     }
 
