@@ -30,8 +30,6 @@ public class TestBase {
     protected List<Map<String,String>> testDataSignIn;
     protected ExcelUtil excelUtilOut;
 
-    protected Connection connection;
-    protected Statement statement;
 
     @BeforeTest(alwaysRun = true)
     public void setUpTest(){
@@ -64,12 +62,6 @@ public class TestBase {
         excelUtilOut= new ExcelUtil("./src/test/resources/sign_in_data.xlsx", 0);
         testDataSignUp = excelUtilIn.getDataList();
         testDataSignIn=excelUtilOut.getDataList();
-        try {
-            connection= DriverManager.getConnection(ConfigurationReader.getProperty("dbUrl"),ConfigurationReader.getProperty("dbUserName"),
-                                                    ConfigurationReader.getProperty("dbPassword"));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
     }
     @AfterMethod(alwaysRun = true)
