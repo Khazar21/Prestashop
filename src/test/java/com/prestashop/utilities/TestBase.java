@@ -65,10 +65,11 @@ public class TestBase {
         testDataSignUp = excelUtilIn.getDataList();
         testDataSignIn=excelUtilOut.getDataList();
         try {
-            connection = DriverManager.getConnection(ConfigurationReader.getProperty("dbUrl"),ConfigurationReader.getProperty("dbUserName"), ConfigurationReader.getProperty("dbPassword"));
+            connection= DriverManager.getConnection(ConfigurationReader.getProperty("dbUrl"),ConfigurationReader.getProperty("dbUserName"),
+                                                    ConfigurationReader.getProperty("dbPassword"));
         } catch (SQLException e) {
             e.printStackTrace();
-        } 
+        }
 
     }
     @AfterMethod(alwaysRun = true)
