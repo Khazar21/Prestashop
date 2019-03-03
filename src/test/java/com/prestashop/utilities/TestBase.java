@@ -10,6 +10,10 @@ import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -25,6 +29,9 @@ public class TestBase {
     protected List<Map<String,String>> testDataSignUp;
     protected List<Map<String,String>> testDataSignIn;
     protected ExcelUtil excelUtilOut;
+
+    protected Connection connection;
+    protected Statement statement;
 
     @BeforeTest(alwaysRun = true)
     public void setUpTest(){
@@ -57,6 +64,12 @@ public class TestBase {
         excelUtilOut= new ExcelUtil("./src/test/resources/sign_in_data.xlsx", 0);
         testDataSignUp = excelUtilIn.getDataList();
         testDataSignIn=excelUtilOut.getDataList();
+        try {
+            connection = DriverManager.getConnection(ConfigurationReader.getProperty("dbUrl"),ConfigurationReader.getProperty("dbUserName"), ConfigurationReader.getProperty("dbPassword"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } 
+
     }
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) throws IOException {
