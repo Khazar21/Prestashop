@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
     public HomePage(){
-        PageFactory.initElements(Driver.getDriver(),this);
+        PageFactory.initElements(Driver.getDriver(),HomePage.class);
     }
 
     @FindBy(xpath = "//a[@class='login']")
@@ -25,5 +25,6 @@ public class HomePage {
         searchBox.clear();
         searchBox.sendKeys(itemreturn + Keys.ENTER);
     }
+    //comment
 
 }

@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class IdentityPage {
-    public IdentityPage(){
+    public  IdentityPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
     @FindBy(id ="firstname")
