@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+
 public class AddToCart extends TestBase {
     @Test(groups = "regression")
     public void addToCart(){
@@ -40,5 +41,7 @@ public class AddToCart extends TestBase {
         pages.itemPage.controlClick.click();
         extentLogger.info("verifying item quantity");
         Assert.assertEquals(pages.itemPage.itemQuantityTempWindow.getText(),"2");
+
+
     }
 }

@@ -56,5 +56,6 @@ public class Account extends TestBase {
         Assert.assertTrue(pages.identityPage.errorMessage.isDisplayed());
         extentLogger.info("PASS- Smoke Test- Account");
 
+
     }
 }
